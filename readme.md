@@ -3,7 +3,7 @@ Camera Calibration Patterns
 
 ## Introduction
 
-This code produces patterns for printing in SVG, PDF and PNG.
+This code produces patterns for camera calibration in vector format (SVG, PDF) and PNG.
 
 The patterns are regular arrangements of circles and squares of multiple sizes that can be used for geometric calibration, point spread function (PSF) modeling and chromatic aberration modeling of a camera.
 

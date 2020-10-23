@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
+import subprocess
+
+
 def square_template(identifier, centerx, centery, size, direction):
     s = '<rect id="rect{0}" y="{1}" x="{2}" height="{3}" width="{3}" />'
     return s.format(identifier, centery - size / 2, centerx - size / 2, size, size)
@@ -41,7 +44,7 @@ def color_circle_template(identifier, centerx, centery, size, direction):
 
 
 # input parameters:
-#'''
+# '''
 input_pattern = 'templates/a4_template.svg'
 output_file = 'small_circles.svg'
 placeholder_text = '<rect id="placeholder" width="100" height="100" x="0" y="0" />'
@@ -52,7 +55,7 @@ pattern_rows = 8
 margins_mm = 5
 detail_level = 3  # 0 is just the center marker. Try to keep it at 5 or lower.
 marker_template = circle_template
-#'''
+# '''
 
 '''
 input_pattern = 'templates/a4_template.svg'
@@ -169,21 +172,28 @@ for i in range(detail_level + 1):
 s = (s * 4 + 1) * pattern_columns * pattern_rows
 
 
-#'''
-import subprocess
+# '''
+
+#inkscape_path='C:\\Program Files\\Inkscape\\inkscape.exe'
+inkscape_path = 'inkscape'
+
 output_png = output_file[:-4] + '.png'
 comando = [
-    'C:\\Program Files\\Inkscape\\inkscape.exe',
+    inkscape_path,
     '-D',  # '-a','{0}:{1}:{2}:{3}'.format(x0,y0,x1,y1),#'x0:y0:x1:y1',
     '--export-dpi=600',
-    '-f', output_file,
-    '--export-png=' + output_png]
+    '--export-filename=' + output_png,
+    '--export-type=png',
+    output_file, ]
+print(' '.join(comando))
 subprocess.check_output(comando)
 output_pdf = output_file[:-4] + '.pdf'
 comando = [
-    'C:\\Program Files\\Inkscape\\inkscape.exe',
+    inkscape_path,
     '-C',  # '-a','{0}:{1}:{2}:{3}'.format(x0,y0,x1,y1),#'x0:y0:x1:y1',
-    '-f', output_file,
-    '--export-pdf=' + output_pdf]
+    '--export-filename=' + output_pdf,
+    '--export-type=pdf',
+    output_file, ]
+print(' '.join(comando))
 subprocess.check_output(comando)
-#'''
+# '''
